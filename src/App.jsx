@@ -5,6 +5,7 @@ function App() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [tempTime, setTempTime] = useState(0); 
 
   useEffect(() => {
     let timer;
@@ -14,7 +15,9 @@ function App() {
       }, 1000);
     } else if (!isRunning && time !== 0) {
       clearInterval(timer);
+      setTempTime(time); 
       setShowModal(true);
+      setTime(0); 
     }
     return () => clearInterval(timer);
   }, [isRunning, time]);
@@ -52,7 +55,7 @@ function App() {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <p className="modal-text">🎉 Great! You tracked {time} seconds!</p>
+            <p className="modal-text">🎉 Great! You tracked {tempTime} seconds!</p>
             <button className="ok-button" onClick={handleCloseModal}>
               OK
             </button>

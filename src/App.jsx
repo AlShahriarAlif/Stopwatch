@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
   const [time, setTime] = useState(0);
@@ -33,21 +33,29 @@ function App() {
   };
 
   return (
-    <div className="stopwatch">
-      <div className="time-display">
-        <h1>{time}s</h1>
+    <div className="stopwatch-container">
+      <h1 className="app-title">⏳ Cool Stopwatch</h1>
+      <p className="app-subtitle">Track your time effortlessly!</p>
+
+      <div className="stopwatch">
+        <div className="time-display">
+          <h1>{time}s</h1>
+        </div>
+        <button
+          className={`start-stop-button ${isRunning ? "stop-button" : ""}`}
+          onClick={handleStartStop}
+        >
+          {isRunning ? "Stop" : "Start"}
+        </button>
       </div>
-      <button
-        className={`start-stop-button ${isRunning ? 'stop-button' : ''}`}
-        onClick={handleStartStop}
-      >
-        {isRunning ? 'Stop' : 'Start'}
-      </button>
+
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Total Time: {time}s</h2>
-            <button className="ok-button" onClick={handleCloseModal}>Ok</button>
+            <p className="modal-text">🎉 Great! You tracked {time} seconds!</p>
+            <button className="ok-button" onClick={handleCloseModal}>
+              OK
+            </button>
           </div>
         </div>
       )}
